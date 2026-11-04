@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Probability via Enumeration &amp; Combinatorics — AS Level 9709</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink:        #0b1020;
+      --ink-2:      #121a35;
+      --paper:      #f7f3ea;
+      --chalk:      #e8ecf6;
+      --muted:      #9aa3bf;
+      --gold:       #f0b84a;
+      --gold-soft:  #f7d383;
+      --teal:       #4fd1c5;
+      --teal-soft:  #7ee5db;
+      --rose:       #ff7a90;
+      --violet:     #a78bfa;
+      --emerald:    #34d399;
+      --shadow:     0 20px 60px rgba(0,0,0,.45);
+    }
+
+    .reveal {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 400;
+      color: var(--chalk);
+      font-size: 32px;
+      letter-spacing: 0.005em;
+    }
+    .reveal .slides { text-align: left; }
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      text-transform: none;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 0.5em;
+    }
+    .reveal h1 { font-size: 2.6em; font-weight: 900; }
+    .reveal h2 { font-size: 1.7em; }
+    .reveal h3 { font-size: 1.25em; }
+    .reveal p, .reveal li { line-height: 1.45; }
+    .reveal strong { color: #fff; font-weight: 700; }
+    .reveal em { color: var(--gold-soft); font-style: normal; font-weight: 600; letter-spacing: 0.01em; }
+
+    .reveal .slide-background-content {
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(79,209,197,0.10), transparent 60%),
+        radial-gradient(900px 500px at 110% 110%, rgba(240,184,74,0.10), transparent 60%),
+        linear-gradient(180deg, #0b1020 0%, #0a0f1f 50%, #080c1a 100%) !important;
+    }
+
+    /* ----- Shared layout helpers ----- */
+    .kicker {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55em;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(240,184,74,0.35);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 1em;
+    }
+    .rule {
+      height: 3px; width: 72px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      border: 0; margin: 14px 0 22px;
+    }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 42px; align-items: start; }
+    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; align-items: stretch; }
+    .meta-row {
+      display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px;
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--chalk);
+      padding: 8px 14px; border-radius: 100px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55em;
+      letter-spacing: 0.08em;
+    }
+    .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+    .pill.gold .dot { background: var(--gold); }
+    .pill.rose .dot { background: var(--rose); }
+    .pill.violet .dot { background: var(--violet); }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      padding: 26px 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+    .card.gold { border-color: rgba(240,184,74,0.35); background: linear-gradient(180deg, rgba(240,184,74,0.10), rgba(240,184,74,0.02)); }
+    .card.teal { border-color: rgba(79,209,197,0.35); background: linear-gradient(180deg, rgba(79,209,197,0.10), rgba(79,209,197,0.02)); }
+    .card.rose { border-color: rgba(255,122,144,0.35); background: linear-gradient(180deg, rgba(255,122,144,0.10), rgba(255,122,144,0.02)); }
+    .card.violet { border-color: rgba(167,139,250,0.40); background: linear-gradient(180deg, rgba(167,139,250,0.10), rgba(167,139,250,0.02)); }
+
+    .card h3 { margin-top: 0; }
+    .card .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55em; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 8px;
+    }
+    .card.teal .label { color: var(--teal-soft); }
+    .card.rose .label { color: var(--rose); }
+    .card.violet .label { color: var(--violet); }
+
+    .big-eq {
+      background: linear-gradient(180deg, rgba(240,184,74,0.08), rgba(240,184,74,0.02));
+      border: 1px solid rgba(240,184,74,0.30);
+      border-left: 5px solid var(--gold);
+      border-radius: 14px;
+      padding: 22px 28px;
+      font-size: 1.12em;
+      color: #fff;
+    }
+
+    .callout {
+      border-left: 4px solid var(--teal);
+      padding: 10px 18px;
+      background: rgba(79,209,197,0.07);
+      border-radius: 0 10px 10px 0;
+      color: var(--chalk);
+      font-size: 0.88em;
+    }
+    .callout.rose { border-color: var(--rose); background: rgba(255,122,144,0.07); }
+    .callout.gold { border-color: var(--gold); background: rgba(240,184,74,0.07); }
+
+    .step-list { list-style: none; padding-left: 0; counter-reset: step; }
+    .step-list li {
+      counter-increment: step;
+      position: relative;
+      padding: 14px 16px 14px 60px;
+      margin-bottom: 10px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+    }
+    .step-list li::before {
+      content: counter(step);
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      width: 34px; height: 34px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), #d9961f);
+      color: #1a1203;
+      font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.05em;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(240,184,74,0.35);
+    }
+
+    /* ----- Dice grid ----- */
+    .dice-grid {
+      display: grid;
+      grid-template-columns: 44px repeat(6, 1fr);
+      grid-template-rows: 44px repeat(6, 1fr);
+      gap: 4px;
+      background: rgba(255,255,255,0.04);
+      padding: 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .dice-grid .head {
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--teal-soft);
+      font-size: 0.78em;
+      font-weight: 700;
+    }
+    .dice-grid .corner {
+      background: transparent;
+    }
+    .dice-grid .cell {
+      aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75em;
+      color: var(--chalk);
+      transition: all 0.4s ease;
+    }
+    .dice-grid .cell.hit {
+      background: linear-gradient(135deg, var(--gold), #e09c22);
+      color: #1a1203;
+      border-color: var(--gold);
+      font-weight: 800;
+      transform: scale(1.04);
+      box-shadow: 0 6px 20px rgba(240,184,74,0.45);
+    }
+
+    /* ----- Final slide ----- */
+    .title-slide { text-align: left; padding: 0 60px; }
+    .title-slide .course {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6em;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .title-slide h1 {
+      font-size: 3.4em; line-height: 1.02;
+      background: linear-gradient(90deg, #fff 0%, #ffe8b8 50%, var(--gold-soft) 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 24px;
+    }
+    .title-slide .sub {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.15em;
+      color: var(--chalk);
+      opacity: 0.85;
+      margin-top: 18px;
+      max-width: 760px;
+    }
+
+    /* MathJax color */
+    mjx-container { color: inherit !important; }
+    mjx-container[display="true"] { margin: 0.5em 0 !important; }
+
+    /* Bullets */
+    .reveal ul { list-style: none; padding-left: 0; }
+    .reveal ul li {
+      position: relative;
+      padding: 10px 0 10px 32px;
+      border-bottom: 1px dashed rgba(255,255,255,0.08);
+    }
+    .reveal ul li:last-child { border-bottom: 0; }
+    .reveal ul li::before {
+      content: ""; position: absolute; left: 6px; top: 22px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--gold); box-shadow: 0 0 0 4px rgba(240,184,74,0.15);
+    }
+    .reveal ul.plain li { padding-left: 0; border: 0; }
+    .reveal ul.plain li::before { display: none; }
+
+    /* Footer */
+    .deck-footer {
+      position: fixed; bottom: 14px; left: 22px; right: 22px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      pointer-events: none;
+      z-index: 20;
+    }
+    .deck-footer .brand { color: var(--gold); letter-spacing: 0.22em; text-transform: uppercase; }
+
+    /* Fragment polish */
+    .reveal .fragment.fade-up { opacity: 0; transform: translateY(14px); transition: all .5s cubic-bezier(.2,.7,.2,1); }
+    .reveal .fragment.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* Answer reveal */
+    .answer-box {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(52,211,153,0.15), rgba(52,211,153,0.04));
+      border: 1px solid rgba(52,211,153,0.5);
+      color: #d6ffea;
+      padding: 10px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.15em;
+      margin-top: 10px;
+    }
+    .answer-box.gold {
+      background: linear-gradient(135deg, rgba(240,184,74,0.18), rgba(240,184,74,0.04));
+      border-color: rgba(240,184,74,0.55);
+      color: #ffe8b8;
+    }
+
+    .divider-tiny { color: var(--muted); margin: 0 10px; }
+
+    /* Slide numbering & progress gold tint */
+    .reveal .progress { color: var(--gold); height: 4px; }
+    .reveal .slide-number { font-family: 'JetBrains Mono', monospace; color: var(--muted); background: transparent; }
+
+    /* Compact helpers for tight slides */
+    .sm { font-size: 0.85em; }
+    .xs { font-size: 0.72em; color: var(--muted); }
+
+    /* Tier cards */
+    .tier {
+      display: flex; flex-direction: column; height: 100%;
+      padding: 22px 22px;
+    }
+    .tier .tier-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5em; letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 8px; color: var(--gold);
+    }
+    .tier.teal .tier-label { color: var(--teal-soft); }
+    .tier.rose .tier-label { color: var(--rose); }
+    .tier h3 { margin: 0 0 10px 0; font-size: 1.05em; }
+    .tier ol { padding-left: 20px; font-size: 0.82em; }
+    .tier ol li { padding: 4px 0; border: 0; }
+    .tier ol li::before { display: none; }
+
+    /* mini-eq inline chip */
+    .chip {
+      display: inline-block;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 8px;
+      padding: 2px 10px;
+      margin: 0 2px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ========== SLIDE 1 — TITLE ========== -->
+    <section data-background-gradient="linear-gradient(135deg, #0b1020 0%, #121a35 60%, #1a0f05 100%)">
+      <div class="title-slide">
+        <div class="course">Cambridge AS Level · Mathematics 9709 · Topic 3.1</div>
+        <h1>Probability via<br>Enumeration &amp;<br>Combinatorics</h1>
+        <div class="sub">Bridging the gap between <em>drawing every outcome</em> and <em>calculating them abstractly</em> — the one lesson that unlocks every exam question in this chapter.</div>
+        <div class="meta-row">
+          <span class="pill"><span class="dot"></span>70 minutes</span>
+          <span class="pill gold"><span class="dot"></span>Class discussion + guided practice</span>
+          <span class="pill violet"><span class="dot"></span>Prereq: $^nC_r$ · basic probability</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SLIDE 2 — OBJECTIVES ========== -->
+    <section>
+      <div class="kicker">Lesson 01 · Orientation</div>
+      <h2>By the end of this lesson, you will be able to…</h2>
+      <hr class="rule">
+
+      <div class="three-col">
+        <div class="card teal fragment fade-up">
+          <div class="label">Objective 01</div>
+          <h3>Map it out.</h3>
+          <p class="sm">Use a <strong>2D possibility grid</strong> to list every equiprobable outcome of a small experiment, and count favourable cases directly.</p>
+        </div>
+        <div class="card gold fragment fade-up">
+          <div class="label">Objective 02</div>
+          <h3>Count the whole.</h3>
+          <p class="sm">Use <strong>combinations</strong> $^nC_r$ to compute the <em>denominator</em> — the total sample space — for selections too large to list.</p>
+        </div>
+        <div class="card violet fragment fade-up">
+          <div class="label">Objective 03</div>
+          <h3>Count the part.</h3>
+          <p class="sm">Use <strong>the multiplication principle</strong> across groups to compute the restricted <em>numerator</em>, then form the probability.</p>
+        </div>
+      </div>
+
+      <div class="callout gold fragment fade-up" style="margin-top:22px;">
+        <strong>The red thread:</strong> probability is just <em>counting carefully</em>. The only thing that changes is <em>how</em> we count.
+      </div>
+    </section>
+
+    <!-- ========== SLIDE 3 — CORE CONCEPT 1 ========== -->
+    <section>
+      <div class="kicker">Core Concept · 01</div>
+      <h2>Equiprobable events &amp; the probability fraction.</h2>
+      <hr class="rule">
+
+      <div class="two-col">
+        <div>
+          <div class="card teal fragment fade-up">
+            <div class="label">Definition</div>
+            <p class="sm" style="margin:0;"><strong>Equiprobable</strong> — every single elementary outcome has the <em>exact same chance</em> of occurring. Think: a fair coin, a fair die, a random draw from a well-shuffled deck.</p>
+          </div>
+
+          <div class="big-eq fragment fade-up" style="margin-top:18px;">
+            $$P(\text{Event}) \;=\; \frac{\text{Favourable outcomes}}{\text{Total outcomes}}$$
+          </div>
+        </div>
+
+        <div>
+          <div class="card fragment fade-up">
+            <div class="label">When to list by hand</div>
+            <p class="sm">If the total sample space is <strong>small</strong> (fewer than $\sim\!40$), we map it with a <em>list</em> or a <em>2D grid</em>. This prevents miscounts — you can literally see every outcome.</p>
+          </div>
+          <div class="callout rose fragment fade-up" style="margin-top:18px;">
+            <strong>The limitation.</strong> Choosing a 5-person committee from 20 people gives <strong>15 504</strong> outcomes. No grid will save you. <em>We need a formula.</em>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SLIDE 4 — WORKED EXAMPLE 1 (DICE GRID) ========== -->
+    <section>
+      <div class="kicker">Worked Example · 01</div>
+      <h2>Two fair dice. $P(\text{sum} = 8) = \;?$</h2>
+      <hr class="rule">
+
+      <div class="two-col" style="grid-template-columns: 1.1fr 1fr; gap: 36px;">
+
+        <!-- The grid -->
+        <div>
+          <div class="dice-grid" id="dice">
+            <div class="corner"></div>
+            <div class="head">1</div><div class="head">2</div><div class="head">3</div><div class="head">4</div><div class="head">5</div><div class="head">6</div>
+
+            <div class="head">1</div>
+            <div class="cell" data-sum="2">2</div><div class="cell" data-sum="3">3</div><div class="cell" data-sum="4">4</div><div class="cell" data-sum="5">5</div><div class="cell" data-sum="6">6</div><div class="cell" data-sum="7">7</div>
+
+            <div class="head">2</div>
+            <div class="cell" data-sum="3">3</div><div class="cell" data-sum="4">4</div><div class="cell" data-sum="5">5</div><div class="cell" data-sum="6">6</div><div class="cell" data-sum="7">7</div><div class="cell" data-sum="8">8</div>
+
+            <div class="head">3</div>
+            <div class="cell" data-sum="4">4</div><div class="cell" data-sum="5">5</div><div class="cell" data-sum="6">6</div><div class="cell" data-sum="7">7</div><div class="cell" data-sum="8">8</div><div class="cell" data-sum="9">9</div>
+
+            <div class="head">4</div>
+            <div class="cell" data-sum="5">5</div><div class="cell" data-sum="6">6</div><div class="cell" data-sum="7">7</div><div class="cell" data-sum="8">8</div><div class="cell" data-sum="9">9</div><div class="cell" data-sum="10">10</div>
+
+            <div class="head">5</div>
+            <div class="cell" data-sum="6">6</div><div class="cell" data-sum="7">7</div><div class="cell" data-sum="8">8</div><div class="cell" data-sum="9">9</div><div class="cell" data-sum="10">10</div><div class="cell" data-sum="11">11</div>
+
+            <div class="head">6</div>
+            <div class="cell" data-sum="7">7</div><div class="cell" data-sum="8">8</div><div class="cell" data-sum="9">9</div><div class="cell" data-sum="10">10</div><div class="cell" data-sum="11">11</div><div class="cell" data-sum="12">12</div>
+          </div>
+          <p class="xs" style="margin-top:10px; text-align:center;">↑ Die A &nbsp;·&nbsp; → Die B &nbsp;·&nbsp; Each cell = one equally-likely outcome.</p>
+        </div>
+
+        <!-- Steps -->
+        <div>
+          <ol class="step-list">
+            <li class="fragment fade-up"><strong>Build the sample space.</strong> One 2D grid, Die A down the side, Die B across the top.</li>
+            <li class="fragment fade-up" data-fragment-index="2"><strong>Count the total.</strong> $6 \times 6 = 36$ equiprobable outcomes.</li>
+            <li class="fragment fade-up" data-fragment-index="3"><strong>Count the favourable.</strong> Pairs summing to 8: $(2,6),(3,5),(4,4),(5,3),(6,2) \;\Rightarrow\; 5$ outcomes.</li>
+            <li class="fragment fade-up" data-fragment-index="4"><strong>Form the probability.</strong>
+              <div style="margin-top:8px;">$$P(\text{sum}=8) \;=\; \frac{5}{36}$$</div>
+            </li>
+          </ol>
+          <div class="fragment fade-up" data-fragment-index="4">
+            <span class="answer-box">$\;P = \dfrac{5}{36} \approx 0.139\;$</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SLIDE 5 — CORE CONCEPT 2 (THE BRIDGE) ========== -->
+    <section>
+      <div class="kicker">Core Concept · 02</div>
+      <h2>The combinatorics bridge.</h2>
+      <hr class="rule">
+
+      <div class="card rose fragment fade-up">
+        <div class="label">The problem</div>
+        <p class="sm" style="margin:0;">Randomly select a <strong>4-student project group</strong> from a class of <strong>30</strong>. How many possible groups? &nbsp; <strong>27 405.</strong> &nbsp; A 2D grid cannot save us — we would need a grid the size of a wall.</p>
+      </div>
+
+      <div class="two-col" style="margin-top:20px;">
+        <div class="card teal fragment fade-up">
+          <div class="label">The solution</div>
+          <p class="sm">Use <strong>combinations</strong> $^nC_r$ to <em>count without listing</em>.</p>
+          <div class="big-eq" style="margin-top:8px;">
+            $$^nC_r \;=\; \binom{n}{r} \;=\; \frac{n!}{r!(n-r)!}$$
+          </div>
+          <p class="xs" style="margin-top:10px;">$n$ = size of the pool &nbsp;·&nbsp; $r$ = how many you pick &nbsp;·&nbsp; order does <em>not</em> matter.</p>
+        </div>
+
+        <div class="card gold fragment fade-up">
+          <div class="label">Calculator efficiency</div>
+          <p class="sm">On the <strong>Casio ClassWiz</strong>, press <span class="chip">SHIFT</span> <span class="chip">÷</span> to access $^nC_r$ directly.</p>
+          <p class="sm">Type $12$, hit the shortcut, type $4$, press <span class="chip">=</span>. You get <strong>495</strong> in under two seconds — <em>no factorial by hand</em>.</p>
+          <div class="callout" style="margin-top:12px;">
+            <strong>Why this matters:</strong> the exam does not reward factorial arithmetic. It rewards <em>correct selection logic</em>. Free your brain for that.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SLIDE 6 — WORKED EXAMPLE 2 ========== -->
+    <section>
+      <div class="kicker">Worked Example · 02</div>
+      <h2>Calculating the denominator.</h2>
+      <hr class="rule">
+
+      <div class="card" style="margin-bottom: 20px;">
+        <p style="margin:0;"><strong>Question.</strong> A committee of 4 is randomly selected from a group of <strong>7 men and 5 women</strong>. How many different committees can be formed?</p>
+      </div>
+
+      <ol class="step-list">
+        <li class="fragment fade-up"><strong>Identify the pool.</strong> $7 + 5 = 12$ total people.</li>
+        <li class="fragment fade-up"><strong>Identify the selection size.</strong> We are picking exactly $r = 4$ people from the whole group.</li>
+        <li class="fragment fade-up"><strong>Order matters?</strong> No — a committee is a committee regardless of the order you pick its members. So we use <em>combinations</em>, not permutations.</li>
+        <li class="fragment fade-up"><strong>Apply the formula.</strong>
+          <div style="margin-top:8px;">$$^{12}C_4 \;=\; \frac{12!}{4!\,8!} \;=\; 495$$</div>
+        </li>
+      </ol>
+
+      <div class="fragment fade-up" style="margin-top:14px;">
+        <span class="answer-box gold">Total possible committees: <strong>495</strong></span>
+      </div>
+
+      <div class="callout gold fragment fade-up" style="margin-top:18px;">
+        <strong>Pedagogical note.</strong> This $495$ becomes the <em>absolute denominator</em> for any probability question built on this scenario. Hold onto it — we will need it on the very next slide.
+      </div>
+    </section>
+
+    <!-- ========== SLIDE 7 — CORE CONCEPT 3 (NUMERATOR) ========== -->
+    <section>
+      <div class="kicker">Core Concept · 03</div>
+      <h2>Restricting the numerator.</h2>
+      <hr class="rule">
+
+      <div class="two-col">
+        <div class="card teal fragment fade-up">
+          <div class="label">The goal</div>
+          <p class="sm">Count the number of <strong>specific, restricted</strong> selections that satisfy the condition of the question — these are the <em>favourable outcomes</em>.</p>
+        </div>
+
+        <div class="card gold fragment fade-up">
+          <div class="label">The rule of “AND”</div>
+          <p class="sm">When a favourable outcome requires picking from <strong>multiple distinct groups</strong> (e.g. choose men <em>AND</em> women), count each group <em>separately</em>, then <strong>multiply</strong>.</p>
+        </div>
+      </div>
+
+      <div class="big-eq fragment fade-up" style="margin-top:22px; text-align:center;">
+        $$\text{Numerator} \;=\; \underbrace{^{n_1}C_{r_1}}_{\text{Group 1}} \;\times\; \underbrace{^{n_2}C_{r_2}}_{\text{Group 2}} \;\times\; \cdots$$
+      </div>
+
+      <div class="callout fragment fade-up" style="margin-top:18px;">
+        <strong>Why multiplication?</strong> Each way to choose Group 1 can pair with <em>every</em> way to choose Group 2. That is the multiplication principle in one sentence.
+      </div>
+    </section>
+
+    <!-- ========== SLIDE 8 — WORKED EXAMPLE 3 (SYNTHESIS) ========== -->
+    <section>
+      <div class="kicker">Worked Example · 03 · Cambridge exam-style</div>
+      <h2>Putting it all together.</h2>
+      <hr class="rule">
+
+      <div class="card" style="margin-bottom:18px;">
+        <p style="margin:0;"><strong>Question.</strong> A committee of 4 is selected at random from 7 men and 5 women. Find the probability that the committee contains <strong>exactly 2 men and 2 women</strong>.</p>
+      </div>
+
+      <div class="two-col" style="grid-template-columns: 1fr 1fr; gap: 28px;">
+        <div class="card teal fragment fade-up">
+          <div class="label">Step 1 · Denominator</div>
+          <p class="sm" style="margin:0 0 6px 0;">Total unrestricted committees of 4 from 12 people.</p>
+          $$^{12}C_4 \;=\; 495$$
+        </div>
+
+        <div class="card gold fragment fade-up">
+          <div class="label">Step 2 · Numerator</div>
+          <p class="sm" style="margin:0 0 6px 0;">Choose 2 men <em>AND</em> 2 women.</p>
+          <p class="sm" style="margin:4px 0;">Men:&nbsp; $^{7}C_{2} = 21$</p>
+          <p class="sm" style="margin:4px 0;">Women:&nbsp; $^{5}C_{2} = 10$</p>
+          <p class="sm" style="margin:6px 0 0 0;">Favourable $= 21 \times 10 = \mathbf{210}$</p>
+        </div>
+      </div>
+
+      <div class="big-eq fragment fade-up" style="margin-top:22px; text-align:center;">
+        $$P(2\text{M and }2\text{W}) \;=\; \frac{210}{495} \;=\; \frac{14}{33} \;\approx\; 0.424$$
+      </div>
+
+      <div class="fragment fade-up" style="text-align:center; margin-top:16px;">
+        <span class="answer-box">$P = \dfrac{14}{33}$</span>
+      </div>
+    </section>
+
+    <!-- ========== SLIDE 9 — CLASSWORK (DIFFERENTIATED) ========== -->
+    <section>
+      <div class="kicker">Classwork · Differentiated practice</div>
+      <h2>Your turn. Pick your tier.</h2>
+      <hr class="rule">
+
+      <div class="three-col">
+        <div class="card teal tier teal fragment fade-up">
+          <div class="tier-label">Tier 1 · Core mechanics</div>
+          <h3>Red &amp; blue marbles.</h3>
+          <p class="xs" style="color:var(--chalk); opacity:0.8;">A bag contains <strong>6 red</strong> and <strong>4 blue</strong> marbles. Three are drawn at random.</p>
+          <ol>
+            <li>How many total ways to draw 3 marbles?</li>
+            <li>How many ways to draw exactly 2 red and 1 blue?</li>
+            <li>Find $P(2R \text{ and } 1B)$.</li>
+          </ol>
+        </div>
+
+        <div class="card gold tier fragment fade-up">
+          <div class="tier-label">Tier 2 · Exam application</div>
+          <h3>Teachers &amp; students.</h3>
+          <p class="xs" style="color:var(--chalk); opacity:0.8;">A team of 5 is chosen from <strong>4 teachers</strong> and <strong>6 students</strong>.</p>
+          <ol>
+            <li>Find $P(\text{exactly 1 teacher})$.</li>
+          </ol>
+          <p class="xs"><em>Tip.</em> Same group, two separate $^nC_r$ calculations — then multiply.</p>
+        </div>
+
+        <div class="card rose tier rose fragment fade-up">
+          <div class="tier-label">Tier 3 · High-flyer extension</div>
+          <h3>“At least” cases.</h3>
+          <p class="xs" style="color:var(--chalk); opacity:0.8;">Same group (4 teachers, 6 students). Team of 5.</p>
+          <ol>
+            <li>Find $P(\text{at least 3 teachers})$.</li>
+          </ol>
+          <p class="xs"><em>Hint.</em> Break the numerator into <strong>mutually exclusive</strong> cases — 3 teachers, then 4 teachers — and add.</p>
+        </div>
+      </div>
+
+      <div class="callout gold fragment fade-up" style="margin-top:22px;">
+        <strong>Rule for every tier:</strong> write the explicit $^nC_r$ setup <em>before</em> any number comes out of your calculator.
+      </div>
+    </section>
+
+    <!-- ========== SLIDE 10 — ASSIGNMENT ========== -->
+    <section>
+      <div class="kicker">Homework &amp; preparation</div>
+      <h2>Lock it in.</h2>
+      <hr class="rule">
+
+      <div class="two-col">
+        <div class="card gold fragment fade-up">
+          <div class="label">Tonight's task</div>
+          <h3>Probability &amp; Combinatorics Drill Sheet.</h3>
+          <p class="sm">Complete the printed drill sheet. For <em>every</em> question:</p>
+          <ul class="plain sm" style="margin-top:6px;">
+            <li>✓&nbsp; Write the <strong>explicit</strong> $^nC_r$ setup for the numerator.</li>
+            <li>✓&nbsp; Write the <strong>explicit</strong> $^nC_r$ setup for the denominator.</li>
+            <li>✗&nbsp; <em>Do not</em> just write the final calculator output — I want to see the selection logic.</li>
+          </ul>
+        </div>
+
+        <div class="card violet fragment fade-up">
+          <div class="label">Prepare for next lesson</div>
+          <h3>Two words to meditate on.</h3>
+          <ul class="plain sm" style="margin-top:6px;">
+            <li><strong>Mutually exclusive</strong> &mdash; what does it <em>really</em> mean for two events?</li>
+            <li><strong>Independent</strong> &mdash; and how is it different from the above?</li>
+          </ul>
+          <p class="xs" style="margin-top:12px;">We will build the algebraic probability rules on top of these two ideas next class. Come with a one-sentence working definition of each.</p>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top: 30px;" class="fragment fade-up">
+        <span class="pill gold"><span class="dot"></span>End of Lesson · Topic 3.1 · Probability via Enumeration &amp; Combinatorics</span>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="deck-footer">
+    <div class="brand">AS 9709 · Topic 3.1</div>
+    <div>Probability via Enumeration &amp; Combinatorics</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/math/math.js"></script>
+<script>
+  // Highlight dice cells summing to 8 when the "count favourable" step is revealed.
+  document.addEventListener('DOMContentLoaded', () => {
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      controls: true,
+      progress: true,
+      center: false,
+      transition: 'slide',
+      backgroundTransition: 'fade',
+      width: 1440,
+      height: 900,
+      margin: 0.06,
+      minScale: 0.3,
+      maxScale: 2.0,
+      mathjax3: {
+        mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+        tex: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']]
+        }
+      },
+      plugins: [ RevealHighlight, RevealNotes, RevealMath.MathJax3 ]
+    });
+
+    Reveal.on('fragmentshown', event => {
+      const slide = Reveal.getCurrentSlide();
+      const grid = slide.querySelector('#dice');
+      if (!grid) return;
+      // Fragment index 3 = "Count favourable" step
+      const idx = event.fragment.getAttribute('data-fragment-index');
+      if (idx === '3' || idx === '4') {
+        grid.querySelectorAll('.cell[data-sum="8"]').forEach(c => c.classList.add('hit'));
+      }
+    });
+    Reveal.on('fragmenthidden', event => {
+      const slide = Reveal.getCurrentSlide();
+      const grid = slide.querySelector('#dice');
+      if (!grid) return;
+      const idx = event.fragment.getAttribute('data-fragment-index');
+      if (idx === '3') {
+        grid.querySelectorAll('.cell[data-sum="8"]').forEach(c => c.classList.remove('hit'));
+      }
+    });
+  });
+</script>
+</body>
+</html>
