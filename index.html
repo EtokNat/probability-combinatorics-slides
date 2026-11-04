@@ -335,6 +335,155 @@
       font-size: 0.85em;
       color: #fff;
     }
+
+    /* Ball-pair chip (Slide 5 — The Trap) */
+    .pair-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .pair {
+      display: flex; align-items: center; justify-content: center;
+      padding: 10px 6px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72em;
+      letter-spacing: 0.02em;
+      color: var(--chalk);
+      transition: all 0.4s ease;
+    }
+    .pair .dot-r, .pair .dot-b {
+      display: inline-block; width: 12px; height: 12px; border-radius: 50%;
+      margin: 0 3px; vertical-align: -1px;
+      box-shadow: inset -2px -3px 4px rgba(0,0,0,0.3);
+    }
+    .pair .dot-r { background: radial-gradient(circle at 30% 30%, #ff9db0, #e14b64); }
+    .pair .dot-b { background: radial-gradient(circle at 30% 30%, #8fd4ff, #3b82f6); }
+    .pair.fav {
+      background: linear-gradient(135deg, rgba(52,211,153,0.22), rgba(52,211,153,0.05));
+      border-color: rgba(52,211,153,0.6);
+      color: #d6ffea;
+      box-shadow: 0 4px 16px rgba(52,211,153,0.2);
+    }
+
+    /* Mega stat (Slide 6 — The Wall) */
+    .mega {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 12px;
+    }
+    .mega .stat {
+      text-align: center;
+      padding: 28px 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,122,144,0.08), rgba(255,122,144,0.02));
+      border: 1px solid rgba(255,122,144,0.30);
+    }
+    .mega .stat.gold {
+      background: linear-gradient(180deg, rgba(240,184,74,0.10), rgba(240,184,74,0.02));
+      border-color: rgba(240,184,74,0.35);
+    }
+    .mega .stat .num {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 3.4em;
+      line-height: 1;
+      background: linear-gradient(135deg, #fff, var(--rose));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .mega .stat.gold .num {
+      background: linear-gradient(135deg, #fff, var(--gold));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .mega .stat .lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5em; letter-spacing: 0.25em; text-transform: uppercase;
+      margin-top: 10px; color: var(--muted);
+    }
+
+    /* Partial-list fade effect (Slide 6) */
+    .fade-list {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72em;
+      line-height: 1.7;
+      color: var(--muted);
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      position: relative;
+      max-height: 160px;
+      overflow: hidden;
+    }
+    .fade-list::after {
+      content: "";
+      position: absolute; left: 0; right: 0; bottom: 0; height: 80px;
+      background: linear-gradient(180deg, transparent, #0a0f1f 95%);
+      pointer-events: none;
+    }
+
+    /* Ellipsis-collapse hint */
+    .arrow-down {
+      text-align: center;
+      font-size: 1.6em;
+      color: var(--rose);
+      margin: 10px 0 2px;
+    }
+
+    /* Order-boundary cards (Slide 9) */
+    .boundary {
+      padding: 26px 28px;
+      border-radius: 20px;
+      height: 100%;
+      display: flex; flex-direction: column;
+    }
+    .boundary .btype {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5em; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4px;
+    }
+    .boundary h3 { font-size: 1.4em; margin: 0 0 14px; }
+    .boundary.handful {
+      background: linear-gradient(180deg, rgba(79,209,197,0.12), rgba(79,209,197,0.02));
+      border: 1px solid rgba(79,209,197,0.40);
+    }
+    .boundary.handful h3 { color: var(--teal-soft); }
+    .boundary.timeline {
+      background: linear-gradient(180deg, rgba(240,184,74,0.12), rgba(240,184,74,0.02));
+      border: 1px solid rgba(240,184,74,0.40);
+    }
+    .boundary.timeline h3 { color: var(--gold-soft); }
+
+    /* Translation twin columns (Slide 8) */
+    .twin {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+      margin-bottom: 20px;
+    }
+    .twin .side {
+      padding: 22px 24px; border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .twin .side .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55em; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--teal-soft); margin-bottom: 8px;
+    }
+    .twin .side.right .tag { color: var(--gold); }
+
+    .merge-eq {
+      text-align: center;
+      padding: 18px;
+      background: linear-gradient(135deg, rgba(167,139,250,0.12), rgba(167,139,250,0.03));
+      border: 1px solid rgba(167,139,250,0.40);
+      border-radius: 14px;
+      font-size: 1.05em;
+    }
   </style>
 </head>
 <body>
@@ -346,11 +495,11 @@
       <div class="title-slide">
         <div class="course">Cambridge AS Level · Mathematics 9709 · Topic 3.1</div>
         <h1>Probability via<br>Enumeration &amp;<br>Combinatorics</h1>
-        <div class="sub">Bridging the gap between <em>drawing every outcome</em> and <em>calculating them abstractly</em> — the one lesson that unlocks every exam question in this chapter.</div>
+        <div class="sub">Bridging manual sample spaces to combinatorial logic — recognising <em>when manual listing fails</em>, and defining the operational boundary between <em>ordered</em> and <em>unordered</em> selections.</div>
         <div class="meta-row">
           <span class="pill"><span class="dot"></span>70 minutes</span>
-          <span class="pill gold"><span class="dot"></span>Class discussion + guided practice</span>
-          <span class="pill violet"><span class="dot"></span>Prereq: $^nC_r$ · basic probability</span>
+          <span class="pill gold"><span class="dot"></span>Guided reasoning + tiered practice</span>
+          <span class="pill violet"><span class="dot"></span>Prereq: $^nC_r$ · Casio ClassWiz</span>
         </div>
       </div>
     </section>
@@ -361,62 +510,61 @@
       <h2>By the end of this lesson, you will be able to…</h2>
       <hr class="rule">
 
-      <div class="three-col">
-        <div class="card teal fragment fade-up">
-          <div class="label">Objective 01</div>
-          <h3>Map it out.</h3>
-          <p class="sm">Use a <strong>2D possibility grid</strong> to list every equiprobable outcome of a small experiment, and count favourable cases directly.</p>
+      <div class="two-col">
+        <div>
+          <div class="card teal fragment fade-up">
+            <div class="label">Objective 01</div>
+            <h3>Map it out.</h3>
+            <p class="sm" style="margin:0;">Map every equiprobable elementary event of a small experiment using a <strong>2-dimensional possibility grid</strong>, and count favourable cases directly.</p>
+          </div>
+          <div class="card rose fragment fade-up" style="margin-top:14px;">
+            <div class="label">Objective 02</div>
+            <h3>Hit the wall.</h3>
+            <p class="sm" style="margin:0;">Prove to yourself the <strong>necessity of combinations</strong> by walking into the <em>Manual Listing Wall</em> — the scenario where writing out every outcome becomes impossible.</p>
+          </div>
         </div>
-        <div class="card gold fragment fade-up">
-          <div class="label">Objective 02</div>
-          <h3>Count the whole.</h3>
-          <p class="sm">Use <strong>combinations</strong> $^nC_r$ to compute the <em>denominator</em> — the total sample space — for selections too large to list.</p>
-        </div>
-        <div class="card violet fragment fade-up">
-          <div class="label">Objective 03</div>
-          <h3>Count the part.</h3>
-          <p class="sm">Use <strong>the multiplication principle</strong> across groups to compute the restricted <em>numerator</em>, then form the probability.</p>
+        <div>
+          <div class="card gold fragment fade-up">
+            <div class="label">Objective 03</div>
+            <h3>Translate the language.</h3>
+            <p class="sm" style="margin:0;">Move fluently between <strong>object selection</strong> (balls from a bag) and <strong>human selection</strong> (committees of people) using the same $^nC_r$ machinery.</p>
+          </div>
+          <div class="card violet fragment fade-up" style="margin-top:14px;">
+            <div class="label">Objective 04</div>
+            <h3>Know the boundary.</h3>
+            <p class="sm" style="margin:0;">Distinguish between <strong>“The Handful”</strong> ($^nC_r$) when order does not matter, and <strong>“The Timeline”</strong> (sequential fractions) when a specific order is required.</p>
+          </div>
         </div>
       </div>
 
-      <div class="callout gold fragment fade-up" style="margin-top:22px;">
-        <strong>The red thread:</strong> probability is just <em>counting carefully</em>. The only thing that changes is <em>how</em> we count.
+      <div class="callout gold fragment fade-up" style="margin-top:18px;">
+        <strong>Prerequisites.</strong> Topic 2 Combinations ($^nC_r$) and confident execution on your Casio ClassWiz calculator.
       </div>
     </section>
 
     <!-- ========== SLIDE 3 — CORE CONCEPT 1 ========== -->
     <section>
       <div class="kicker">Core Concept · 01</div>
-      <h2>Equiprobable events &amp; the probability fraction.</h2>
+      <h2>Equiprobable events.</h2>
       <hr class="rule">
 
-      <div class="two-col">
-        <div>
-          <div class="card teal fragment fade-up">
-            <div class="label">Definition</div>
-            <p class="sm" style="margin:0;"><strong>Equiprobable</strong> — every single elementary outcome has the <em>exact same chance</em> of occurring. Think: a fair coin, a fair die, a random draw from a well-shuffled deck.</p>
-          </div>
+      <div class="card teal fragment fade-up">
+        <div class="label">Definition</div>
+        <p class="sm" style="margin:0;"><strong>Equiprobable</strong> — every individual elementary outcome in a sample space has the <em>exact same theoretical chance</em> of happening. Think: a fair coin toss, a single roll of a fair die, a single random draw from a well-shuffled deck of cards.</p>
+      </div>
 
-          <div class="big-eq fragment fade-up" style="margin-top:18px;">
-            $$P(\text{Event}) \;=\; \frac{\text{Favourable outcomes}}{\text{Total outcomes}}$$
-          </div>
-        </div>
+      <div class="big-eq fragment fade-up" style="margin-top:18px;">
+        $$P(\text{Event}) \;=\; \frac{\text{Number of favourable outcomes}}{\text{Total number of possible outcomes}}$$
+      </div>
 
-        <div>
-          <div class="card fragment fade-up">
-            <div class="label">When to list by hand</div>
-            <p class="sm">If the total sample space is <strong>small</strong> (fewer than $\sim\!40$), we map it with a <em>list</em> or a <em>2D grid</em>. This prevents miscounts — you can literally see every outcome.</p>
-          </div>
-          <div class="callout rose fragment fade-up" style="margin-top:18px;">
-            <strong>The limitation.</strong> Choosing a 5-person committee from 20 people gives <strong>15 504</strong> outcomes. No grid will save you. <em>We need a formula.</em>
-          </div>
-        </div>
+      <div class="callout rose fragment fade-up" style="margin-top:18px;">
+        <strong>The condition.</strong> This fraction is <em>mathematically invalid</em> unless the denominator consists <strong>entirely</strong> of perfectly balanced, equiprobable events. If you catch yourself writing a fraction like this where the outcomes are not equally likely, <em>stop</em> — the answer will be wrong.
       </div>
     </section>
 
     <!-- ========== SLIDE 4 — WORKED EXAMPLE 1 (DICE GRID) ========== -->
     <section>
-      <div class="kicker">Worked Example · 01</div>
+      <div class="kicker">Worked Example · 01 · 2D possibility grid</div>
       <h2>Two fair six-sided dice are rolled together.</h2>
       <hr class="rule">
 
@@ -456,7 +604,7 @@
         <!-- Steps -->
         <div>
           <ol class="step-list">
-            <li class="fragment fade-up"><strong>Build the sample space.</strong> One 2D grid, Die A down the side, Die B across the top.</li>
+            <li class="fragment fade-up"><strong>Build the sample space.</strong> Map every coordinate pair $(a,b)$ from $(1,1)$ to $(6,6)$ into a 2D grid.</li>
             <li class="fragment fade-up" data-fragment-index="2"><strong>Count the total.</strong> $6 \times 6 = 36$ equiprobable outcomes.</li>
             <li class="fragment fade-up" data-fragment-index="3"><strong>Count the favourable.</strong> Pairs summing to 8: $(2,6),(3,5),(4,4),(5,3),(6,2) \;\Rightarrow\; 5$ outcomes.</li>
             <li class="fragment fade-up" data-fragment-index="4"><strong>Form the probability.</strong>
@@ -464,135 +612,208 @@
             </li>
           </ol>
           <div class="fragment fade-up" data-fragment-index="4">
-            <span class="answer-box">$\;P = \dfrac{5}{36} \approx 0.139\;$</span>
+            <span class="answer-box">The probability is $\dfrac{5}{36} \approx 0.139$.</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========== SLIDE 5 — CORE CONCEPT 2 (THE BRIDGE) ========== -->
+    <!-- ========== SLIDE 5 — THE TRAP (WHEN LISTING WORKS) ========== -->
     <section>
-      <div class="kicker">Core Concept · 02</div>
-      <h2>The combinatorics bridge.</h2>
+      <div class="kicker">The Trap · When manual listing works</div>
+      <h2>A small bag, a short list, a clean answer.</h2>
       <hr class="rule">
 
-      <div class="card rose fragment fade-up">
-        <div class="label">The problem</div>
-        <p class="sm" style="margin:0;">Randomly select a <strong>4-student project group</strong> from a class of <strong>30</strong>. How many possible groups? &nbsp; <strong>27 405.</strong> &nbsp; A 2D grid cannot save us — we would need a grid the size of a wall.</p>
+      <div class="card" style="margin-bottom: 18px;">
+        <p style="margin:0;"><strong>Question.</strong> A bag contains $3$ red balls and $2$ blue balls. Two balls are drawn from the bag at random, without replacement. Find the probability that one of the balls drawn is red and the other is blue.</p>
       </div>
 
-      <div class="two-col" style="margin-top:20px;">
-        <div class="card teal fragment fade-up">
-          <div class="label">The solution</div>
-          <p class="sm">Use <strong>combinations</strong> $^nC_r$ to <em>count without listing</em>.</p>
-          <div class="big-eq" style="margin-top:8px;">
-            $$^nC_r \;=\; \binom{n}{r} \;=\; \frac{n!}{r!(n-r)!}$$
-          </div>
-          <p class="xs" style="margin-top:10px;">$n$ = size of the pool &nbsp;·&nbsp; $r$ = how many you pick &nbsp;·&nbsp; order does <em>not</em> matter.</p>
-        </div>
+      <div class="two-col" style="grid-template-columns: 1.3fr 1fr; gap: 28px;">
+        <div>
+          <p class="sm" style="margin-top:0;"><strong>All $10$ equally-likely pairs</strong> — the green ones have one red and one blue:</p>
+          <div class="pair-grid fragment fade-up">
+            <div class="pair"><span class="dot-r"></span><span class="dot-r"></span>&nbsp;R₁R₂</div>
+            <div class="pair"><span class="dot-r"></span><span class="dot-r"></span>&nbsp;R₁R₃</div>
+            <div class="pair"><span class="dot-r"></span><span class="dot-r"></span>&nbsp;R₂R₃</div>
+            <div class="pair"><span class="dot-b"></span><span class="dot-b"></span>&nbsp;B₁B₂</div>
+            <div class="pair fav"><span class="dot-r"></span><span class="dot-b"></span>&nbsp;R₁B₁</div>
 
-        <div class="card gold fragment fade-up">
-          <div class="label">Calculator efficiency</div>
-          <p class="sm">On the <strong>Casio ClassWiz</strong>, press <span class="chip">SHIFT</span> <span class="chip">÷</span> to access $^nC_r$ directly.</p>
-          <p class="sm">Type $12$, hit the shortcut, type $4$, press <span class="chip">=</span>. You get <strong>495</strong> in under two seconds — <em>no factorial by hand</em>.</p>
-          <div class="callout" style="margin-top:12px;">
-            <strong>Why this matters:</strong> the exam does not reward factorial arithmetic. It rewards <em>correct selection logic</em>. Free your brain for that.
+            <div class="pair fav"><span class="dot-r"></span><span class="dot-b"></span>&nbsp;R₁B₂</div>
+            <div class="pair fav"><span class="dot-r"></span><span class="dot-b"></span>&nbsp;R₂B₁</div>
+            <div class="pair fav"><span class="dot-r"></span><span class="dot-b"></span>&nbsp;R₂B₂</div>
+            <div class="pair fav"><span class="dot-r"></span><span class="dot-b"></span>&nbsp;R₃B₁</div>
+            <div class="pair fav"><span class="dot-r"></span><span class="dot-b"></span>&nbsp;R₃B₂</div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ========== SLIDE 6 — WORKED EXAMPLE 2 ========== -->
-    <section>
-      <div class="kicker">Worked Example · 02</div>
-      <h2>Calculating the denominator.</h2>
-      <hr class="rule">
-
-      <div class="card" style="margin-bottom: 20px;">
-        <p style="margin:0;"><strong>Question.</strong> A committee of $4$ people is to be selected at random from a group consisting of $7$ men and $5$ women. Calculate the total number of different committees of $4$ people that can be formed from this group.</p>
-      </div>
-
-      <ol class="step-list">
-        <li class="fragment fade-up"><strong>Identify the pool.</strong> $7 + 5 = 12$ total people.</li>
-        <li class="fragment fade-up"><strong>Identify the selection size.</strong> We are picking exactly $r = 4$ people from the whole group.</li>
-        <li class="fragment fade-up"><strong>Order matters?</strong> No — a committee is a committee regardless of the order you pick its members. So we use <em>combinations</em>, not permutations.</li>
-        <li class="fragment fade-up"><strong>Apply the formula.</strong>
-          <div style="margin-top:8px;">$$^{12}C_4 \;=\; \frac{12!}{4!\,8!} \;=\; 495$$</div>
-        </li>
-      </ol>
-
-      <div class="fragment fade-up" style="margin-top:14px;">
-        <span class="answer-box gold">Total possible committees: <strong>495</strong></span>
+        <div>
+          <ol class="step-list">
+            <li class="fragment fade-up"><strong>Total pairs.</strong> Listed by hand: $10$ equiprobable outcomes.</li>
+            <li class="fragment fade-up"><strong>Favourable pairs.</strong> One red and one blue: $6$ outcomes.</li>
+            <li class="fragment fade-up"><strong>Form the probability.</strong>
+              <div style="margin-top:8px;">$$P(\text{1 red and 1 blue}) \;=\; \frac{6}{10} \;=\; \frac{3}{5}$$</div>
+            </li>
+          </ol>
+          <div class="fragment fade-up">
+            <span class="answer-box">The probability is $\dfrac{3}{5} = 0.6$.</span>
+          </div>
+        </div>
       </div>
 
       <div class="callout gold fragment fade-up" style="margin-top:18px;">
-        <strong>Pedagogical note.</strong> This $495$ becomes the <em>absolute denominator</em> for any probability question built on this scenario. Hold onto it — we will need it on the very next slide.
+        <em>Teacher prompt.</em> &nbsp; That took us roughly three minutes of writing. What happens to this method if we add just a few more balls to the bag?
       </div>
     </section>
 
-    <!-- ========== SLIDE 7 — CORE CONCEPT 3 (NUMERATOR) ========== -->
+    <!-- ========== SLIDE 6 — THE WALL (WHEN LISTING FAILS) ========== -->
     <section>
-      <div class="kicker">Core Concept · 03</div>
-      <h2>Restricting the numerator.</h2>
+      <div class="kicker">The Wall · When manual listing fails</div>
+      <h2>Same strategy. Bigger bag. Total collapse.</h2>
       <hr class="rule">
 
-      <div class="two-col">
-        <div class="card teal fragment fade-up">
-          <div class="label">The goal</div>
-          <p class="sm">Count the number of <strong>specific, restricted</strong> selections that satisfy the condition of the question — these are the <em>favourable outcomes</em>.</p>
+      <div class="card rose" style="margin-bottom: 16px;">
+        <p style="margin:0;"><strong>Question.</strong> A bag now contains $5$ red balls and $7$ blue balls. Five balls are drawn from the bag at random, without replacement. Find the probability that exactly $2$ of them are red and exactly $3$ of them are blue.</p>
+      </div>
+
+      <div class="two-col" style="grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch;">
+        <div>
+          <p class="sm" style="margin-top:0;"><strong>Trying to list the numerator…</strong></p>
+          <div class="fade-list fragment fade-up">
+            $(R_1, R_2, B_1, B_2, B_3)$<br>
+            $(R_1, R_2, B_1, B_2, B_4)$<br>
+            $(R_1, R_2, B_1, B_2, B_5)$<br>
+            $(R_1, R_2, B_1, B_2, B_6)$<br>
+            $(R_1, R_2, B_1, B_2, B_7)$<br>
+            $(R_1, R_2, B_1, B_3, B_4)$<br>
+            $(R_1, R_2, B_1, B_3, B_5)$<br>
+            $(R_1, R_2, B_1, B_3, B_6)$<br>
+            $(R_1, R_3, B_1, B_2, B_3)$<br>
+            $(R_1, R_4, B_1, B_2, B_3)$ …
+          </div>
+          <div class="arrow-down fragment fade-up">↓ and on, and on, and on …</div>
         </div>
 
+        <div class="mega">
+          <div class="stat gold fragment fade-up">
+            <div class="num">792</div>
+            <div class="lbl">Total ways to draw 5 balls</div>
+          </div>
+          <div class="stat fragment fade-up">
+            <div class="num">350</div>
+            <div class="lbl">Favourable ways (2 red + 3 blue)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout rose fragment fade-up" style="margin-top:18px;">
+        <strong>Reality check.</strong> Manual listing of $792$ outcomes <em>inside an exam</em> is a guaranteed failure. You need a <em>counting machine</em> — a formula that produces the length of the list without forcing you to write it.
+      </div>
+    </section>
+
+    <!-- ========== SLIDE 7 — THE COMBINATORICS RESCUE ========== -->
+    <section>
+      <div class="kicker">The Rescue · $^nC_r$</div>
+      <h2>The counting machine.</h2>
+      <hr class="rule">
+
+      <div class="card teal fragment fade-up">
+        <div class="label">The shortcut</div>
+        <p class="sm" style="margin:0;">Because every selection is equally likely, <strong>combinations</strong> $^nC_r$ give us the <em>exact length of the list</em> — the count of possibilities — without forcing us to write a single one of them down.</p>
+      </div>
+
+      <div class="two-col" style="margin-top:18px;">
         <div class="card gold fragment fade-up">
-          <div class="label">The rule of “AND”</div>
-          <p class="sm">When a favourable outcome requires picking from <strong>multiple distinct groups</strong> (e.g. choose men <em>AND</em> women), count each group <em>separately</em>, then <strong>multiply</strong>.</p>
+          <div class="label">Step 1 · Denominator</div>
+          <p class="sm" style="margin:0 0 6px;">Total ways to choose <em>any</em> $5$ balls from the $12$ in the bag.</p>
+          $$^{12}C_5 \;=\; 792$$
+        </div>
+
+        <div class="card violet fragment fade-up">
+          <div class="label">Step 2 · Numerator</div>
+          <p class="sm" style="margin:0 0 6px;">Choose $2$ red <em>AND</em> $3$ blue — multiply the two counts.</p>
+          <p class="sm" style="margin:4px 0;">Red: &nbsp; $^{5}C_{2} = 10$</p>
+          <p class="sm" style="margin:4px 0;">Blue: &nbsp; $^{7}C_{3} = 35$</p>
+          <p class="sm" style="margin:6px 0 0;">Favourable $= 10 \times 35 = \mathbf{350}$</p>
         </div>
       </div>
 
       <div class="big-eq fragment fade-up" style="margin-top:22px; text-align:center;">
-        $$\text{Numerator} \;=\; \underbrace{^{n_1}C_{r_1}}_{\text{Group 1}} \;\times\; \underbrace{^{n_2}C_{r_2}}_{\text{Group 2}} \;\times\; \cdots$$
+        $$P(\text{2 red and 3 blue}) \;=\; \frac{^{5}C_{2} \times {}^{7}C_{3}}{^{12}C_{5}} \;=\; \frac{350}{792} \;=\; \frac{175}{396} \;\approx\; 0.442$$
+      </div>
+
+      <div class="fragment fade-up" style="text-align:center; margin-top: 12px;">
+        <span class="answer-box">The probability is $\dfrac{175}{396}$.</span>
+      </div>
+    </section>
+
+    <!-- ========== SLIDE 8 — THE TRANSLATION (BALLS vs PEOPLE) ========== -->
+    <section>
+      <div class="kicker">The Translation · Balls vs People</div>
+      <h2>The formula does not read English.</h2>
+      <hr class="rule">
+
+      <div class="twin">
+        <div class="side fragment fade-up">
+          <div class="tag">Column A · Objects</div>
+          <p class="sm" style="margin:0;">A bag contains $5$ red balls and $7$ blue balls. Five balls are drawn at random, without replacement. Find the probability that exactly $2$ are red and $3$ are blue.</p>
+        </div>
+        <div class="side right fragment fade-up">
+          <div class="tag">Column B · Humans</div>
+          <p class="sm" style="margin:0;">A committee of $5$ people is to be selected at random from a group consisting of $5$ men and $7$ women. Find the probability that the committee contains exactly $2$ men and $3$ women.</p>
+        </div>
+      </div>
+
+      <div class="merge-eq fragment fade-up">
+        <p class="sm" style="margin:0 0 4px; color: var(--muted);">The <em>same</em> mathematical machinery solves both.</p>
+        $$P \;=\; \frac{^{5}C_{2} \;\times\; {}^{7}C_{3}}{^{12}C_{5}} \;=\; \frac{350}{792} \;=\; \frac{175}{396}$$
+      </div>
+
+      <div class="callout gold fragment fade-up" style="margin-top:18px;">
+        <strong>Core idea.</strong> The $^nC_r$ formula cannot tell the difference between a red marble and a doctor. It does not see <em>“marble”</em> or <em>“teacher”</em> or <em>“student”</em> — it only sees <strong>pool size</strong> and <strong>selection size</strong>. Drawing coloured balls is <em>mathematically identical</em> to selecting a human committee.
+      </div>
+    </section>
+
+    <!-- ========== SLIDE 9 — THE ACTION BOUNDARY (ORDER) ========== -->
+    <section>
+      <div class="kicker">The Action Boundary · Order vs No Order</div>
+      <h2>Two questions that look alike — but need different tools.</h2>
+      <hr class="rule">
+
+      <div class="two-col" style="grid-template-columns: 1fr 1fr; gap: 22px; align-items: stretch;">
+
+        <div class="boundary handful fragment fade-up">
+          <div class="btype">Variation A</div>
+          <h3>The “Handful” — no order.</h3>
+          <p class="sm"><strong>Question.</strong> A bag contains $5$ red balls and $7$ blue balls. Two balls are drawn from the bag at random, without replacement. Find the probability that one ball is red and the other is blue.</p>
+          <p class="sm" style="margin-bottom:4px;"><strong>Action.</strong> Use <em>combinations</em> — order of the handful does not matter.</p>
+          <div class="big-eq" style="margin-top:8px; font-size:0.95em;">
+            $$P \;=\; \frac{^{5}C_{1} \times {}^{7}C_{1}}{^{12}C_{2}} \;=\; \frac{5 \times 7}{66} \;=\; \frac{35}{66}$$
+          </div>
+          <div style="margin-top:10px;">
+            <span class="answer-box">$P = \dfrac{35}{66} \approx 0.530$</span>
+          </div>
+        </div>
+
+        <div class="boundary timeline fragment fade-up">
+          <div class="btype">Variation B</div>
+          <h3>The “Timeline” — specific order.</h3>
+          <p class="sm"><strong>Question.</strong> From the same bag ($5$ red, $7$ blue), two balls are drawn in sequence, without replacement. Find the probability that the <em>first</em> ball drawn is red <em>and</em> the <em>second</em> ball drawn is blue.</p>
+          <p class="sm" style="margin-bottom:4px;"><strong>Action.</strong> Abandon combinatorics — use <em>sequential fractions</em>. After the first draw, the bag is smaller.</p>
+          <div class="big-eq" style="margin-top:8px; font-size:0.95em;">
+            $$P \;=\; \underbrace{\frac{5}{12}}_{\text{1st: red}} \;\times\; \underbrace{\frac{7}{11}}_{\text{2nd: blue}} \;=\; \frac{35}{132}$$
+          </div>
+          <div style="margin-top:10px;">
+            <span class="answer-box gold">$P = \dfrac{35}{132} \approx 0.265$</span>
+          </div>
+        </div>
       </div>
 
       <div class="callout fragment fade-up" style="margin-top:18px;">
-        <strong>Why multiplication?</strong> Each way to choose Group 1 can pair with <em>every</em> way to choose Group 2. That is the multiplication principle in one sentence.
+        <strong>Diagnostic question to ask yourself:</strong> does the wording specify <em>which object comes first</em>? If yes → <strong>Timeline</strong>. If the question just asks for a <em>collection</em> of objects → <strong>Handful</strong>.
       </div>
     </section>
 
-    <!-- ========== SLIDE 8 — WORKED EXAMPLE 3 (SYNTHESIS) ========== -->
-    <section>
-      <div class="kicker">Worked Example · 03 · Cambridge exam-style</div>
-      <h2>Putting it all together.</h2>
-      <hr class="rule">
-
-      <div class="card" style="margin-bottom:18px;">
-        <p style="margin:0;"><strong>Question.</strong> A committee of $4$ people is to be selected at random from a group consisting of $7$ men and $5$ women. Find the probability that the committee selected contains <strong>exactly $2$ men and exactly $2$ women</strong>.</p>
-      </div>
-
-      <div class="two-col" style="grid-template-columns: 1fr 1fr; gap: 28px;">
-        <div class="card teal fragment fade-up">
-          <div class="label">Step 1 · Denominator</div>
-          <p class="sm" style="margin:0 0 6px 0;">Total unrestricted committees of 4 from 12 people.</p>
-          $$^{12}C_4 \;=\; 495$$
-        </div>
-
-        <div class="card gold fragment fade-up">
-          <div class="label">Step 2 · Numerator</div>
-          <p class="sm" style="margin:0 0 6px 0;">Choose 2 men <em>AND</em> 2 women.</p>
-          <p class="sm" style="margin:4px 0;">Men:&nbsp; $^{7}C_{2} = 21$</p>
-          <p class="sm" style="margin:4px 0;">Women:&nbsp; $^{5}C_{2} = 10$</p>
-          <p class="sm" style="margin:6px 0 0 0;">Favourable $= 21 \times 10 = \mathbf{210}$</p>
-        </div>
-      </div>
-
-      <div class="big-eq fragment fade-up" style="margin-top:22px; text-align:center;">
-        $$P(\text{exactly 2 men and 2 women}) \;=\; \frac{210}{495} \;=\; \frac{14}{33} \;\approx\; 0.424$$
-      </div>
-
-      <div class="fragment fade-up" style="text-align:center; margin-top:16px;">
-        <span class="answer-box">The probability is $\dfrac{14}{33}$.</span>
-      </div>
-    </section>
-
-    <!-- ========== SLIDE 9 — CLASSWORK (DIFFERENTIATED) ========== -->
+    <!-- ========== SLIDE 10 — CLASSWORK (DIFFERENTIATED) ========== -->
     <section>
       <div class="kicker">Classwork · Differentiated practice</div>
       <h2>Your turn. Pick your tier.</h2>
@@ -600,72 +821,73 @@
 
       <div class="three-col">
         <div class="card teal tier teal fragment fade-up">
-          <div class="tier-label">Tier 1 · Core mechanics</div>
-          <h3>Red &amp; blue marbles.</h3>
-          <p class="xs" style="color:var(--chalk); opacity:0.85;">A bag contains $6$ red marbles and $4$ blue marbles. Three marbles are drawn from the bag at random, without replacement.</p>
+          <div class="tier-label">Tier 1 · Core translation</div>
+          <h3>Doctors &amp; nurses.</h3>
+          <p class="xs" style="color:var(--chalk); opacity:0.85;">A medical team of $4$ people is to be chosen at random from a group consisting of $6$ doctors and $5$ nurses.</p>
           <ol>
-            <li>Calculate the total number of different ways in which the three marbles can be drawn from the bag.</li>
-            <li>Calculate the number of ways in which the three marbles drawn can consist of exactly $2$ red marbles and $1$ blue marble.</li>
-            <li>Find the probability that the three marbles drawn consist of exactly $2$ red marbles and $1$ blue marble.</li>
+            <li>Find the probability that the team chosen contains exactly $2$ doctors and exactly $2$ nurses.</li>
           </ol>
+          <p class="xs"><em>Setup.</em> Denominator is $^{11}C_{4}$; numerator is $^{6}C_{2} \times {}^{5}C_{2}$.</p>
         </div>
 
         <div class="card gold tier fragment fade-up">
-          <div class="tier-label">Tier 2 · Exam application</div>
-          <h3>Teachers &amp; students.</h3>
-          <p class="xs" style="color:var(--chalk); opacity:0.85;">A team of $5$ people is to be chosen at random from a group consisting of $4$ teachers and $6$ students.</p>
+          <div class="tier-label">Tier 2 · Boundary identification</div>
+          <h3>Green &amp; yellow tokens.</h3>
+          <p class="xs" style="color:var(--chalk); opacity:0.85;">A bag contains $8$ green tokens and $4$ yellow tokens.</p>
           <ol>
-            <li>Find the probability that the team chosen contains exactly $1$ teacher and $4$ students.</li>
+            <li><strong>(a)</strong> Three tokens are drawn from the bag at random, without replacement. Find the probability that exactly $2$ of them are green and $1$ is yellow.</li>
+            <li><strong>(b)</strong> Three tokens are drawn <em>one after the other</em>, without replacement. Find the probability that the first is green, the second is green, and the third is yellow.</li>
           </ol>
-          <p class="xs"><em>Tip.</em> Same group, two separate $^nC_r$ calculations — one for the teachers, one for the students — then multiply.</p>
+          <p class="xs"><em>Hint.</em> One of these is a Handful; the other is a Timeline. Decide which is which <em>before</em> you start writing.</p>
         </div>
 
         <div class="card rose tier rose fragment fade-up">
-          <div class="tier-label">Tier 3 · High-flyer extension</div>
+          <div class="tier-label">Tier 3 · Exam synthesis</div>
           <h3>“At least” cases.</h3>
-          <p class="xs" style="color:var(--chalk); opacity:0.85;">Using the same group as above ($4$ teachers and $6$ students), a team of $5$ people is chosen at random.</p>
+          <p class="xs" style="color:var(--chalk); opacity:0.85;">Using the same medical group as Tier 1 ($6$ doctors and $5$ nurses), a team of $4$ people is chosen at random.</p>
           <ol>
-            <li>Find the probability that the team chosen contains <em>at least $3$</em> teachers.</li>
+            <li>Find the probability that the team chosen contains <em>at least $3$</em> doctors.</li>
           </ol>
-          <p class="xs"><em>Hint.</em> Break the favourable outcome into <strong>mutually exclusive</strong> cases — exactly $3$ teachers, then exactly $4$ teachers — count each separately, and add the two totals.</p>
+          <p class="xs"><em>Hint.</em> Break the favourable outcome into <strong>mutually exclusive</strong> cases — exactly $3$ doctors, then exactly $4$ doctors — count each with $^nC_r$, and add the two totals.</p>
         </div>
       </div>
 
       <div class="callout gold fragment fade-up" style="margin-top:22px;">
-        <strong>Rule for every tier:</strong> write the explicit $^nC_r$ setup <em>before</em> any number comes out of your calculator.
+        <strong>Rule for every tier:</strong> write the explicit $^nC_r$ setup — or the explicit sequential fractions — <em>before</em> any number comes out of your calculator.
       </div>
     </section>
 
-    <!-- ========== SLIDE 10 — ASSIGNMENT ========== -->
+    <!-- ========== SLIDE 11 — ASSIGNMENT & NEXT STEPS ========== -->
     <section>
       <div class="kicker">Homework &amp; preparation</div>
-      <h2>Lock it in.</h2>
+      <h2>Lock it in. Then peek at tomorrow.</h2>
       <hr class="rule">
 
       <div class="two-col">
         <div class="card gold fragment fade-up">
           <div class="label">Tonight's task</div>
-          <h3>Probability &amp; Combinatorics Drill Sheet.</h3>
-          <p class="sm">Complete the printed drill sheet. For <em>every</em> question:</p>
+          <h3>Probability drill sheet.</h3>
+          <p class="sm">Complete the printed Probability Drill Sheet. For <em>every</em> question:</p>
           <ul class="plain sm" style="margin-top:6px;">
-            <li>✓&nbsp; Write the <strong>explicit</strong> $^nC_r$ setup for the numerator.</li>
-            <li>✓&nbsp; Write the <strong>explicit</strong> $^nC_r$ setup for the denominator.</li>
-            <li>✗&nbsp; <em>Do not</em> just write the final calculator output — I want to see the selection logic.</li>
+            <li>✓&nbsp; Write the explicit $^nC_r$ setup, or the explicit sequential fractions.</li>
+            <li>✓&nbsp; Show the full fraction $\dfrac{\text{numerator}}{\text{denominator}}$ before simplifying.</li>
+            <li>✗&nbsp; <strong>Bare decimal answers will receive zero marks.</strong> I cannot see your reasoning if you only write the final number.</li>
           </ul>
         </div>
 
         <div class="card violet fragment fade-up">
-          <div class="label">Prepare for next lesson</div>
-          <h3>Two words to meditate on.</h3>
-          <ul class="plain sm" style="margin-top:6px;">
-            <li><strong>Mutually exclusive</strong> &mdash; what does it <em>really</em> mean for two events?</li>
-            <li><strong>Independent</strong> &mdash; and how is it different from the above?</li>
+          <div class="label">Next class · Permutations</div>
+          <h3>When our rules break.</h3>
+          <p class="sm" style="margin:0 0 8px;">Tomorrow, two kinds of question will <em>break</em> the $^nC_r$ Handful rule we built today:</p>
+          <ul class="plain sm" style="margin-top:0;">
+            <li>🔑&nbsp; A specific <strong>password arrangement</strong> — e.g. “how many 4-letter codes…”</li>
+            <li>🪑&nbsp; A specific <strong>seating line-up</strong> — e.g. “in how many ways can 6 people sit in a row…”</li>
           </ul>
-          <p class="xs" style="margin-top:12px;">We will build the algebraic probability rules on top of these two ideas next class. Come with a one-sentence working definition of each.</p>
+          <p class="xs" style="margin-top:10px;">For both, we will need <em>permutations</em> $^nP_r$. Come ready to extend today's thinking, not replace it.</p>
         </div>
       </div>
 
-      <div style="text-align:center; margin-top: 30px;" class="fragment fade-up">
+      <div style="text-align:center; margin-top: 26px;" class="fragment fade-up">
         <span class="pill gold"><span class="dot"></span>End of Lesson · Topic 3.1 · Probability via Enumeration &amp; Combinatorics</span>
       </div>
     </section>
