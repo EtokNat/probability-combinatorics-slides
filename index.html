@@ -429,8 +429,12 @@
     <!-- ========== SLIDE 4 — WORKED EXAMPLE 1 (DICE GRID) ========== -->
     <section>
       <div class="kicker">Worked Example · 01</div>
-      <h2>Two fair dice. $P(\text{sum} = 8) = \;?$</h2>
+      <h2>Two fair six-sided dice are rolled together.</h2>
       <hr class="rule">
+
+      <div class="card" style="margin-bottom: 18px;">
+        <p style="margin:0;"><strong>Question.</strong> Two fair six-sided dice, one red and one blue, are rolled at the same time. Find the probability that the sum of the two scores shown on the top faces of the dice is exactly $8$.</p>
+      </div>
 
       <div class="two-col" style="grid-template-columns: 1.1fr 1fr; gap: 36px;">
 
@@ -458,7 +462,7 @@
             <div class="head">6</div>
             <div class="cell" data-sum="7">7</div><div class="cell" data-sum="8">8</div><div class="cell" data-sum="9">9</div><div class="cell" data-sum="10">10</div><div class="cell" data-sum="11">11</div><div class="cell" data-sum="12">12</div>
           </div>
-          <p class="xs" style="margin-top:10px; text-align:center;">↑ Die A &nbsp;·&nbsp; → Die B &nbsp;·&nbsp; Each cell = one equally-likely outcome.</p>
+          <p class="xs" style="margin-top:10px; text-align:center;">Rows: score on the red die (1–6) &nbsp;·&nbsp; Columns: score on the blue die (1–6) &nbsp;·&nbsp; Each cell shows the sum, and every cell is equally likely.</p>
         </div>
 
         <!-- Steps -->
@@ -517,7 +521,7 @@
       <hr class="rule">
 
       <div class="card" style="margin-bottom: 20px;">
-        <p style="margin:0;"><strong>Question.</strong> A committee of 4 is randomly selected from a group of <strong>7 men and 5 women</strong>. How many different committees can be formed?</p>
+        <p style="margin:0;"><strong>Question.</strong> A committee of $4$ people is to be selected at random from a group consisting of $7$ men and $5$ women. Calculate the total number of different committees of $4$ people that can be formed from this group.</p>
       </div>
 
       <ol class="step-list">
@@ -572,7 +576,7 @@
       <hr class="rule">
 
       <div class="card" style="margin-bottom:18px;">
-        <p style="margin:0;"><strong>Question.</strong> A committee of 4 is selected at random from 7 men and 5 women. Find the probability that the committee contains <strong>exactly 2 men and 2 women</strong>.</p>
+        <p style="margin:0;"><strong>Question.</strong> A committee of $4$ people is to be selected at random from a group consisting of $7$ men and $5$ women. Find the probability that the committee selected contains <strong>exactly $2$ men and exactly $2$ women</strong>.</p>
       </div>
 
       <div class="two-col" style="grid-template-columns: 1fr 1fr; gap: 28px;">
@@ -592,11 +596,11 @@
       </div>
 
       <div class="big-eq fragment fade-up" style="margin-top:22px; text-align:center;">
-        $$P(2\text{M and }2\text{W}) \;=\; \frac{210}{495} \;=\; \frac{14}{33} \;\approx\; 0.424$$
+        $$P(\text{exactly 2 men and 2 women}) \;=\; \frac{210}{495} \;=\; \frac{14}{33} \;\approx\; 0.424$$
       </div>
 
       <div class="fragment fade-up" style="text-align:center; margin-top:16px;">
-        <span class="answer-box">$P = \dfrac{14}{33}$</span>
+        <span class="answer-box">The probability is $\dfrac{14}{33}$.</span>
       </div>
     </section>
 
@@ -610,32 +614,32 @@
         <div class="card teal tier teal fragment fade-up">
           <div class="tier-label">Tier 1 · Core mechanics</div>
           <h3>Red &amp; blue marbles.</h3>
-          <p class="xs" style="color:var(--chalk); opacity:0.8;">A bag contains <strong>6 red</strong> and <strong>4 blue</strong> marbles. Three are drawn at random.</p>
+          <p class="xs" style="color:var(--chalk); opacity:0.85;">A bag contains $6$ red marbles and $4$ blue marbles. Three marbles are drawn from the bag at random, without replacement.</p>
           <ol>
-            <li>How many total ways to draw 3 marbles?</li>
-            <li>How many ways to draw exactly 2 red and 1 blue?</li>
-            <li>Find $P(2R \text{ and } 1B)$.</li>
+            <li>Calculate the total number of different ways in which the three marbles can be drawn from the bag.</li>
+            <li>Calculate the number of ways in which the three marbles drawn can consist of exactly $2$ red marbles and $1$ blue marble.</li>
+            <li>Find the probability that the three marbles drawn consist of exactly $2$ red marbles and $1$ blue marble.</li>
           </ol>
         </div>
 
         <div class="card gold tier fragment fade-up">
           <div class="tier-label">Tier 2 · Exam application</div>
           <h3>Teachers &amp; students.</h3>
-          <p class="xs" style="color:var(--chalk); opacity:0.8;">A team of 5 is chosen from <strong>4 teachers</strong> and <strong>6 students</strong>.</p>
+          <p class="xs" style="color:var(--chalk); opacity:0.85;">A team of $5$ people is to be chosen at random from a group consisting of $4$ teachers and $6$ students.</p>
           <ol>
-            <li>Find $P(\text{exactly 1 teacher})$.</li>
+            <li>Find the probability that the team chosen contains exactly $1$ teacher and $4$ students.</li>
           </ol>
-          <p class="xs"><em>Tip.</em> Same group, two separate $^nC_r$ calculations — then multiply.</p>
+          <p class="xs"><em>Tip.</em> Same group, two separate $^nC_r$ calculations — one for the teachers, one for the students — then multiply.</p>
         </div>
 
         <div class="card rose tier rose fragment fade-up">
           <div class="tier-label">Tier 3 · High-flyer extension</div>
           <h3>“At least” cases.</h3>
-          <p class="xs" style="color:var(--chalk); opacity:0.8;">Same group (4 teachers, 6 students). Team of 5.</p>
+          <p class="xs" style="color:var(--chalk); opacity:0.85;">Using the same group as above ($4$ teachers and $6$ students), a team of $5$ people is chosen at random.</p>
           <ol>
-            <li>Find $P(\text{at least 3 teachers})$.</li>
+            <li>Find the probability that the team chosen contains <em>at least $3$</em> teachers.</li>
           </ol>
-          <p class="xs"><em>Hint.</em> Break the numerator into <strong>mutually exclusive</strong> cases — 3 teachers, then 4 teachers — and add.</p>
+          <p class="xs"><em>Hint.</em> Break the favourable outcome into <strong>mutually exclusive</strong> cases — exactly $3$ teachers, then exactly $4$ teachers — count each separately, and add the two totals.</p>
         </div>
       </div>
 
