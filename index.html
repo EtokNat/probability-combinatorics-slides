@@ -496,41 +496,31 @@
         <div class="course">Cambridge AS Level · Mathematics 9709 · Topic 3.1</div>
         <h1>Probability via<br>Enumeration &amp;<br>Combinatorics</h1>
         <div class="sub">Bridging manual sample spaces to combinatorial logic — recognising <em>when manual listing fails</em>, and defining the operational boundary between <em>ordered</em> and <em>unordered</em> selections.</div>
-        <div class="meta-row">
-          <span class="pill"><span class="dot"></span>70 minutes</span>
-          <span class="pill gold"><span class="dot"></span>Guided reasoning + tiered practice</span>
-          <span class="pill violet"><span class="dot"></span>Prereq: $^nC_r$ · Casio ClassWiz</span>
-        </div>
       </div>
     </section>
 
     <!-- ========== SLIDE 2 — OBJECTIVES ========== -->
     <section>
-      <div class="kicker">Lesson 01 · Orientation</div>
       <h2>By the end of this lesson, you will be able to…</h2>
       <hr class="rule">
 
       <div class="two-col">
         <div>
           <div class="card teal fragment fade-up">
-            <div class="label">Objective 01</div>
             <h3>Map it out.</h3>
             <p class="sm" style="margin:0;">Map every equiprobable elementary event of a small experiment using a <strong>2-dimensional possibility grid</strong>, and count favourable cases directly.</p>
           </div>
           <div class="card rose fragment fade-up" style="margin-top:14px;">
-            <div class="label">Objective 02</div>
             <h3>Hit the wall.</h3>
             <p class="sm" style="margin:0;">Prove to yourself the <strong>necessity of combinations</strong> by walking into the <em>Manual Listing Wall</em> — the scenario where writing out every outcome becomes impossible.</p>
           </div>
         </div>
         <div>
           <div class="card gold fragment fade-up">
-            <div class="label">Objective 03</div>
             <h3>Translate the language.</h3>
             <p class="sm" style="margin:0;">Move fluently between <strong>object selection</strong> (balls from a bag) and <strong>human selection</strong> (committees of people) using the same $^nC_r$ machinery.</p>
           </div>
           <div class="card violet fragment fade-up" style="margin-top:14px;">
-            <div class="label">Objective 04</div>
             <h3>Know the boundary.</h3>
             <p class="sm" style="margin:0;">Distinguish between <strong>“The Handful”</strong> ($^nC_r$) when order does not matter, and <strong>“The Timeline”</strong> (sequential fractions) when a specific order is required.</p>
           </div>
@@ -544,12 +534,10 @@
 
     <!-- ========== SLIDE 3 — CORE CONCEPT 1 ========== -->
     <section>
-      <div class="kicker">Core Concept · 01</div>
       <h2>Equiprobable events.</h2>
       <hr class="rule">
 
       <div class="card teal fragment fade-up">
-        <div class="label">Definition</div>
         <p class="sm" style="margin:0;"><strong>Equiprobable</strong> — every individual elementary outcome in a sample space has the <em>exact same theoretical chance</em> of happening. Think: a fair coin toss, a single roll of a fair die, a single random draw from a well-shuffled deck of cards.</p>
       </div>
 
@@ -564,7 +552,6 @@
 
     <!-- ========== SLIDE 4 — WORKED EXAMPLE 1 (DICE GRID) ========== -->
     <section>
-      <div class="kicker">Worked Example · 01 · 2D possibility grid</div>
       <h2>Two fair six-sided dice are rolled together.</h2>
       <hr class="rule">
 
@@ -620,7 +607,6 @@
 
     <!-- ========== SLIDE 5 — THE TRAP (WHEN LISTING WORKS) ========== -->
     <section>
-      <div class="kicker">The Trap · When manual listing works</div>
       <h2>A small bag, a short list, a clean answer.</h2>
       <hr class="rule">
 
@@ -667,7 +653,6 @@
 
     <!-- ========== SLIDE 6 — THE WALL (WHEN LISTING FAILS) ========== -->
     <section>
-      <div class="kicker">The Wall · When manual listing fails</div>
       <h2>Same strategy. Bigger bag. Total collapse.</h2>
       <hr class="rule">
 
@@ -712,12 +697,10 @@
 
     <!-- ========== SLIDE 7 — THE COMBINATORICS RESCUE ========== -->
     <section>
-      <div class="kicker">The Rescue · $^nC_r$</div>
       <h2>The counting machine.</h2>
       <hr class="rule">
 
       <div class="card teal fragment fade-up">
-        <div class="label">The shortcut</div>
         <p class="sm" style="margin:0;">Because every selection is equally likely, <strong>combinations</strong> $^nC_r$ give us the <em>exact length of the list</em> — the count of possibilities — without forcing us to write a single one of them down.</p>
       </div>
 
@@ -748,17 +731,14 @@
 
     <!-- ========== SLIDE 8 — THE TRANSLATION (BALLS vs PEOPLE) ========== -->
     <section>
-      <div class="kicker">The Translation · Balls vs People</div>
       <h2>The formula does not read English.</h2>
       <hr class="rule">
 
       <div class="twin">
         <div class="side fragment fade-up">
-          <div class="tag">Column A · Objects</div>
           <p class="sm" style="margin:0;">A bag contains $5$ red balls and $7$ blue balls. Five balls are drawn at random, without replacement. Find the probability that exactly $2$ are red and $3$ are blue.</p>
         </div>
         <div class="side right fragment fade-up">
-          <div class="tag">Column B · Humans</div>
           <p class="sm" style="margin:0;">A committee of $5$ people is to be selected at random from a group consisting of $5$ men and $7$ women. Find the probability that the committee contains exactly $2$ men and $3$ women.</p>
         </div>
       </div>
@@ -775,14 +755,12 @@
 
     <!-- ========== SLIDE 9 — THE ACTION BOUNDARY (ORDER) ========== -->
     <section>
-      <div class="kicker">The Action Boundary · Order vs No Order</div>
       <h2>Two questions that look alike — but need different tools.</h2>
       <hr class="rule">
 
       <div class="two-col" style="grid-template-columns: 1fr 1fr; gap: 22px; align-items: stretch;">
 
         <div class="boundary handful fragment fade-up">
-          <div class="btype">Variation A</div>
           <h3>The “Handful” — no order.</h3>
           <p class="sm"><strong>Question.</strong> A bag contains $5$ red balls and $7$ blue balls. Two balls are drawn from the bag at random, without replacement. Find the probability that one ball is red and the other is blue.</p>
           <p class="sm" style="margin-bottom:4px;"><strong>Action.</strong> Use <em>combinations</em> — order of the handful does not matter.</p>
@@ -795,7 +773,6 @@
         </div>
 
         <div class="boundary timeline fragment fade-up">
-          <div class="btype">Variation B</div>
           <h3>The “Timeline” — specific order.</h3>
           <p class="sm"><strong>Question.</strong> From the same bag ($5$ red, $7$ blue), two balls are drawn in sequence, without replacement. Find the probability that the <em>first</em> ball drawn is red <em>and</em> the <em>second</em> ball drawn is blue.</p>
           <p class="sm" style="margin-bottom:4px;"><strong>Action.</strong> Abandon combinatorics — use <em>sequential fractions</em>. After the first draw, the bag is smaller.</p>
@@ -815,8 +792,7 @@
 
     <!-- ========== SLIDE 10 — CLASSWORK (DIFFERENTIATED) ========== -->
     <section>
-      <div class="kicker">Classwork · Differentiated practice</div>
-      <h2>Your turn. Pick your tier.</h2>
+      <h2>Classwork — pick your tier.</h2>
       <hr class="rule">
 
       <div class="three-col">
@@ -869,8 +845,7 @@
 
     <!-- ========== SLIDE 11 — ASSIGNMENT: THE CAMBRIDGE TRAPS ========== -->
     <section>
-      <div class="kicker">Assignment · The Cambridge Traps</div>
-      <h2>Three traps. Deliberate thinking only.</h2>
+      <h2>Assignment — the three Cambridge traps.</h2>
       <hr class="rule">
 
       <div class="callout gold" style="margin-bottom: 16px;">
