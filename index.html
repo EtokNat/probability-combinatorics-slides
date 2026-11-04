@@ -820,7 +820,7 @@
       <hr class="rule">
 
       <div class="three-col">
-        <div class="card teal tier teal fragment fade-up">
+        <div class="card teal tier teal fragment fade-up" data-fragment-index="1">
           <div class="tier-label">Tier 1 · Core translation</div>
           <h3>Doctors &amp; nurses.</h3>
           <p class="xs" style="color:var(--chalk); opacity:0.85;">A medical team of $4$ people is to be chosen at random from a group consisting of $6$ doctors and $5$ nurses.</p>
@@ -828,9 +828,12 @@
             <li>Find the probability that the team chosen contains exactly $2$ doctors and exactly $2$ nurses.</li>
           </ol>
           <p class="xs"><em>Setup.</em> Denominator is $^{11}C_{4}$; numerator is $^{6}C_{2} \times {}^{5}C_{2}$.</p>
+          <div class="fragment fade-up" data-fragment-index="5" style="margin-top:8px;">
+            <span class="answer-box" style="font-size:0.78em; padding:6px 14px;">$P = \dfrac{150}{330} = \dfrac{5}{11} \approx 0.455$</span>
+          </div>
         </div>
 
-        <div class="card gold tier fragment fade-up">
+        <div class="card gold tier fragment fade-up" data-fragment-index="2">
           <div class="tier-label">Tier 2 · Boundary identification</div>
           <h3>Green &amp; yellow tokens.</h3>
           <p class="xs" style="color:var(--chalk); opacity:0.85;">A bag contains $8$ green tokens and $4$ yellow tokens.</p>
@@ -839,9 +842,13 @@
             <li><strong>(b)</strong> Three tokens are drawn <em>one after the other</em>, without replacement. Find the probability that the first is green, the second is green, and the third is yellow.</li>
           </ol>
           <p class="xs"><em>Hint.</em> One of these is a Handful; the other is a Timeline. Decide which is which <em>before</em> you start writing.</p>
+          <div class="fragment fade-up" data-fragment-index="6" style="margin-top:8px;">
+            <span class="answer-box gold" style="font-size:0.72em; padding:6px 12px; display:block; margin-bottom:6px;">(a) &nbsp; $P = \dfrac{112}{220} = \dfrac{28}{55} \approx 0.509$</span>
+            <span class="answer-box gold" style="font-size:0.72em; padding:6px 12px; display:block;">(b) &nbsp; $P = \dfrac{8}{12}\cdot\dfrac{7}{11}\cdot\dfrac{4}{10} = \dfrac{28}{165} \approx 0.170$</span>
+          </div>
         </div>
 
-        <div class="card rose tier rose fragment fade-up">
+        <div class="card rose tier rose fragment fade-up" data-fragment-index="3">
           <div class="tier-label">Tier 3 · Exam synthesis</div>
           <h3>“At least” cases.</h3>
           <p class="xs" style="color:var(--chalk); opacity:0.85;">Using the same medical group as Tier 1 ($6$ doctors and $5$ nurses), a team of $4$ people is chosen at random.</p>
@@ -849,46 +856,65 @@
             <li>Find the probability that the team chosen contains <em>at least $3$</em> doctors.</li>
           </ol>
           <p class="xs"><em>Hint.</em> Break the favourable outcome into <strong>mutually exclusive</strong> cases — exactly $3$ doctors, then exactly $4$ doctors — count each with $^nC_r$, and add the two totals.</p>
+          <div class="fragment fade-up" data-fragment-index="7" style="margin-top:8px;">
+            <span class="answer-box" style="font-size:0.78em; padding:6px 14px;">$P = \dfrac{100 + 15}{330} = \dfrac{23}{66} \approx 0.348$</span>
+          </div>
         </div>
       </div>
 
-      <div class="callout gold fragment fade-up" style="margin-top:22px;">
-        <strong>Rule for every tier:</strong> write the explicit $^nC_r$ setup — or the explicit sequential fractions — <em>before</em> any number comes out of your calculator.
+      <div class="callout gold fragment fade-up" data-fragment-index="4" style="margin-top:22px;">
+        <strong>Rule for every tier:</strong> write the explicit $^nC_r$ setup — or the explicit sequential fractions — <em>before</em> any number comes out of your calculator. Then discuss, then reveal the verified answers.
       </div>
     </section>
 
-    <!-- ========== SLIDE 11 — ASSIGNMENT & NEXT STEPS ========== -->
+    <!-- ========== SLIDE 11 — ASSIGNMENT: THE CAMBRIDGE TRAPS ========== -->
     <section>
-      <div class="kicker">Homework &amp; preparation</div>
-      <h2>Lock it in. Then peek at tomorrow.</h2>
+      <div class="kicker">Assignment · The Cambridge Traps</div>
+      <h2>Three traps. Deliberate thinking only.</h2>
       <hr class="rule">
 
-      <div class="two-col">
-        <div class="card gold fragment fade-up">
-          <div class="label">Tonight's task</div>
-          <h3>Probability drill sheet.</h3>
-          <p class="sm">Complete the printed Probability Drill Sheet. For <em>every</em> question:</p>
-          <ul class="plain sm" style="margin-top:6px;">
-            <li>✓&nbsp; Write the explicit $^nC_r$ setup, or the explicit sequential fractions.</li>
-            <li>✓&nbsp; Show the full fraction $\dfrac{\text{numerator}}{\text{denominator}}$ before simplifying.</li>
-            <li>✗&nbsp; <strong>Bare decimal answers will receive zero marks.</strong> I cannot see your reasoning if you only write the final number.</li>
-          </ul>
-        </div>
+      <div class="callout gold" style="margin-bottom: 16px;">
+        <strong>Task.</strong> Solve these three exam-level constraints. For each one, you must write down your explicit $^nC_r$ setup. Bare decimal answers will receive zero marks.
+      </div>
 
-        <div class="card violet fragment fade-up">
-          <div class="label">Next class · Permutations</div>
-          <h3>When our rules break.</h3>
-          <p class="sm" style="margin:0 0 8px;">Tomorrow, two kinds of question will <em>break</em> the $^nC_r$ Handful rule we built today:</p>
-          <ul class="plain sm" style="margin-top:0;">
-            <li>🔑&nbsp; A specific <strong>password arrangement</strong> — e.g. “how many 4-letter codes…”</li>
-            <li>🪑&nbsp; A specific <strong>seating line-up</strong> — e.g. “in how many ways can 6 people sit in a row…”</li>
-          </ul>
-          <p class="xs" style="margin-top:10px;">For both, we will need <em>permutations</em> $^nP_r$. Come ready to extend today's thinking, not replace it.</p>
+      <!-- Trap 1 — VIP -->
+      <div class="card violet fragment fade-up" style="margin-bottom:14px;">
+        <div class="label">Question 1 · The VIP</div>
+        <p class="sm" style="margin:0 0 6px;"><strong>Question.</strong> A committee of $5$ people is to be chosen at random from a group of $8$ men and $6$ women. Given that the male Chairman <em>must</em> be included on the committee, find the probability that the committee chosen contains exactly $3$ men.</p>
+        <p class="xs" style="margin:6px 0 0;"><em>Hint.</em> If the Chairman takes his seat <em>before</em> the random selection begins, how does your starting pool change, and how many people are you actually choosing at random?</p>
+        <div class="fragment fade-up" style="margin-top:10px;">
+          <span class="answer-box" style="font-size:0.82em; padding:8px 16px;">
+            Chairman in $\Rightarrow$ pick $4$ more from $13$ (need $2$ more men &amp; $2$ women): &nbsp; $P = \dfrac{^{7}C_{2}\cdot{}^{6}C_{2}}{^{13}C_{4}} = \dfrac{315}{715} = \dfrac{63}{143} \approx 0.441$
+          </span>
         </div>
       </div>
 
-      <div style="text-align:center; margin-top: 26px;" class="fragment fade-up">
-        <span class="pill gold"><span class="dot"></span>End of Lesson · Topic 3.1 · Probability via Enumeration &amp; Combinatorics</span>
+      <!-- Trap 2 — Feud -->
+      <div class="card rose fragment fade-up" style="margin-bottom:14px;">
+        <div class="label">Question 2 · The Feud</div>
+        <p class="sm" style="margin:0 0 6px;"><strong>Question.</strong> A committee of $4$ people is to be chosen at random from a group of $10$ students. Two of the students, John and Sarah, refuse to work together on the same committee. Find the probability that the committee chosen is <em>acceptable</em> — that is, it does <em>not</em> contain both John and Sarah.</p>
+        <p class="xs" style="margin:6px 0 0;"><em>Hint.</em> It is easier to calculate the probability of the <em>disaster</em> happening — both John and Sarah being chosen — and then subtract that probability from $1$.</p>
+        <div class="fragment fade-up" style="margin-top:10px;">
+          <span class="answer-box gold" style="font-size:0.82em; padding:8px 16px;">
+            $P(\text{both J \&amp; S}) = \dfrac{^{8}C_{2}}{^{10}C_{4}} = \dfrac{28}{210} = \dfrac{2}{15}$ &nbsp;$\Rightarrow$&nbsp; $P(\text{acceptable}) = 1 - \dfrac{2}{15} = \dfrac{13}{15} \approx 0.867$
+          </span>
+        </div>
+      </div>
+
+      <!-- Trap 3 — Shortcut -->
+      <div class="card teal fragment fade-up" style="margin-bottom:14px;">
+        <div class="label">Question 3 · The Shortcut</div>
+        <p class="sm" style="margin:0 0 6px;"><strong>Question.</strong> A team of $5$ people is to be chosen at random from a group of $6$ doctors and $5$ nurses. Find the probability that the team chosen contains <em>at least $1$</em> doctor.</p>
+        <p class="xs" style="margin:6px 0 0;"><em>Hint.</em> You could calculate exactly $1$, exactly $2$, exactly $3$, exactly $4$ <em>and</em> exactly $5$ doctors — five separate cases. Or you could calculate the probability of a team with <em>zero</em> doctors and subtract that from $1$. Which is safer in an exam?</p>
+        <div class="fragment fade-up" style="margin-top:10px;">
+          <span class="answer-box" style="font-size:0.82em; padding:8px 16px;">
+            $P(\text{zero doctors}) = \dfrac{^{5}C_{5}}{^{11}C_{5}} = \dfrac{1}{462}$ &nbsp;$\Rightarrow$&nbsp; $P(\text{at least }1\text{ doctor}) = 1 - \dfrac{1}{462} = \dfrac{461}{462} \approx 0.998$
+          </span>
+        </div>
+      </div>
+
+      <div class="callout fragment fade-up" style="margin-top:10px;">
+        <strong>Tomorrow.</strong> Two question types will <em>break</em> our $^nC_r$ Handful rule — a specific <strong>password arrangement</strong> and a specific <strong>seating line-up</strong>. For both, we will need <em>permutations</em> $^nP_r$. Come ready.
       </div>
     </section>
 
