@@ -274,18 +274,6 @@
     .reveal ul.plain li { padding-left: 0; border: 0; }
     .reveal ul.plain li::before { display: none; }
 
-    /* Footer */
-    .deck-footer {
-      position: fixed; bottom: 14px; left: 22px; right: 22px;
-      display: flex; justify-content: space-between; align-items: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--muted);
-      pointer-events: none;
-      z-index: 20;
-    }
-    .deck-footer .brand { color: var(--gold); letter-spacing: 0.22em; text-transform: uppercase; }
-
     /* Fragment polish */
     .reveal .fragment.fade-up { opacity: 0; transform: translateY(14px); transition: all .5s cubic-bezier(.2,.7,.2,1); }
     .reveal .fragment.fade-up.visible { opacity: 1; transform: translateY(0); }
@@ -684,10 +672,6 @@
 
   </div>
 
-  <div class="deck-footer">
-    <div class="brand">AS 9709 · Topic 3.1</div>
-    <div>Probability via Enumeration &amp; Combinatorics</div>
-  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
