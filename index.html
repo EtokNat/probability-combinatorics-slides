@@ -70,12 +70,12 @@
       letter-spacing: -0.015em;
       text-transform: none;
       color: #fff;
-      line-height: 1.08;
-      margin-bottom: 0.35em;
+      line-height: 1.1;
+      margin-bottom: 0.5em;
     }
     .reveal h1 { font-size: 2.6em; font-weight: 900; }
-    .reveal h2 { font-size: 1.55em; margin-bottom: 0.3em; }
-    .reveal h3 { font-size: 1.15em; margin-bottom: 0.25em; }
+    .reveal h2 { font-size: 1.7em; }
+    .reveal h3 { font-size: 1.25em; }
     .reveal p, .reveal li { line-height: 1.45; }
     .reveal strong { color: #fff; font-weight: 800; }
     .reveal em { color: var(--gold-soft); font-style: normal; font-weight: 700; letter-spacing: 0.01em; }
@@ -128,8 +128,8 @@
     .card {
       background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
       border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 16px;
-      padding: 18px 22px;
+      border-radius: 18px;
+      padding: 26px 30px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(6px);
     }
@@ -153,18 +153,18 @@
       border: 1px solid rgba(240,184,74,0.30);
       border-left: 5px solid var(--gold);
       border-radius: 14px;
-      padding: 14px 22px;
-      font-size: 1.08em;
+      padding: 22px 28px;
+      font-size: 1.12em;
       color: #fff;
     }
 
     .callout {
       border-left: 4px solid var(--teal);
-      padding: 8px 16px;
+      padding: 10px 18px;
       background: rgba(79,209,197,0.07);
       border-radius: 0 10px 10px 0;
       color: var(--chalk);
-      font-size: 0.85em;
+      font-size: 0.88em;
     }
     .callout.rose { border-color: var(--rose); background: rgba(255,122,144,0.07); }
     .callout.gold { border-color: var(--gold); background: rgba(240,184,74,0.07); }
@@ -173,8 +173,8 @@
     .step-list li {
       counter-increment: step;
       position: relative;
-      padding: 10px 14px 10px 54px;
-      margin-bottom: 8px;
+      padding: 14px 16px 14px 60px;
+      margin-bottom: 10px;
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 12px;
@@ -265,12 +265,12 @@
     .reveal ul { list-style: none; padding-left: 0; }
     .reveal ul li {
       position: relative;
-      padding: 7px 0 7px 30px;
+      padding: 10px 0 10px 32px;
       border-bottom: 1px dashed rgba(255,255,255,0.08);
     }
     .reveal ul li:last-child { border-bottom: 0; }
     .reveal ul li::before {
-      content: ""; position: absolute; left: 6px; top: 18px;
+      content: ""; position: absolute; left: 6px; top: 22px;
       width: 10px; height: 10px; border-radius: 50%;
       background: var(--gold); box-shadow: 0 0 0 4px rgba(240,184,74,0.15);
     }
@@ -312,7 +312,7 @@
     /* Tier cards */
     .tier {
       display: flex; flex-direction: column; height: 100%;
-      padding: 16px 18px;
+      padding: 22px 22px;
     }
     .tier .tier-label {
       font-family: 'JetBrains Mono', monospace;
@@ -440,8 +440,8 @@
 
     /* Order-boundary cards (Slide 9) */
     .boundary {
-      padding: 18px 22px;
-      border-radius: 18px;
+      padding: 26px 28px;
+      border-radius: 20px;
       height: 100%;
       display: flex; flex-direction: column;
     }
@@ -907,8 +907,40 @@
   // Helper: re-typeset the current slide after Reveal has shown/transitioned.
   function retypeset(scope) {
     if (window.MathJax && MathJax.typesetPromise) {
-      MathJax.typesetPromise(scope ? [scope] : undefined).catch(() => {});
+      MathJax.typesetPromise(scope ? [scope] : undefined)
+        .then(() => fitSlide(scope))
+        .catch(() => fitSlide(scope));
+    } else {
+      fitSlide(scope);
     }
+  }
+
+  // Shrink a single slide only if its content overflows the canvas height.
+  // Runs on every slide change and after MathJax retypesets.
+  function fitSlide(el) {
+    if (!el) return;
+    const slide = (el.tagName && el.tagName.toLowerCase() === 'section') ? el : el.closest && el.closest('section');
+    if (!slide) return;
+
+    // Always reset first so a slide that no longer overflows returns to normal size.
+    slide.style.transform = '';
+    slide.style.transformOrigin = '';
+
+    requestAnimationFrame(() => {
+      const cfg = (window.Reveal && Reveal.getConfig) ? Reveal.getConfig() : {};
+      const canvasH = cfg.height || 900;
+      const contentH = slide.scrollHeight;
+      if (contentH > canvasH + 2) {
+        const scale = (canvasH / contentH) * 0.98;
+        slide.style.transformOrigin = 'top center';
+        slide.style.transform = `scale(${scale})`;
+      }
+    });
+  }
+
+  // Fit every slide once (used on initial ready sweep).
+  function fitAllSlides() {
+    document.querySelectorAll('.reveal .slides > section').forEach(fitSlide);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -920,26 +952,43 @@
       center: false,
       transition: 'slide',
       backgroundTransition: 'fade',
-      width: 1600,
-      height: 1050,
-      margin: 0.04,
-      minScale: 0.2,
+      width: 1440,
+      height: 900,
+      margin: 0.06,
+      minScale: 0.3,
       maxScale: 2.0,
       plugins: [ RevealHighlight, RevealNotes ]
     }).then(() => {
-      // Initial sweep once Reveal has laid out the DOM.
-      retypeset(document.querySelector('.reveal .slides'));
+      // Initial sweep: typeset math everywhere, then fit every slide.
+      if (window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise([document.querySelector('.reveal .slides')])
+          .then(fitAllSlides)
+          .catch(fitAllSlides);
+      } else {
+        fitAllSlides();
+      }
     });
 
-    // Safety net: re-typeset whenever a slide becomes active.
+    // Re-typeset + re-fit whenever a slide becomes active.
     Reveal.on('slidechanged', e => retypeset(e.currentSlide));
     Reveal.on('ready',        e => retypeset(e.currentSlide));
 
+    // Fragments change content height — re-fit after each reveal/unreveal.
+    Reveal.on('fragmentshown',  () => fitSlide(Reveal.getCurrentSlide()));
+    Reveal.on('fragmenthidden', () => fitSlide(Reveal.getCurrentSlide()));
+
+    // Handle window resize (phone rotation, monitor change, dev tools toggle).
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(fitAllSlides, 150);
+    });
+
+    // Dice grid interaction (unchanged).
     Reveal.on('fragmentshown', event => {
       const slide = Reveal.getCurrentSlide();
       const grid = slide.querySelector('#dice');
       if (!grid) return;
-      // Fragment index 3 = "Count favourable" step
       const idx = event.fragment.getAttribute('data-fragment-index');
       if (idx === '3' || idx === '4') {
         grid.querySelectorAll('.cell[data-sum="8"]').forEach(c => c.classList.add('hit'));
